@@ -1,4 +1,4 @@
-# 🏃 BMI Calculator - Task 1 | Oasis Infobyte Python Internship
+# 🏃 BMI Calculator - Task 1
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Internship](https://img.shields.io/badge/Internship-Oasis%20Infobyte-orange)
