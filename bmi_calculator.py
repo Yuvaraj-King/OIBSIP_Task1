@@ -22,7 +22,32 @@ def get_positive_number(prompt):
 
 
 # -------------------------------------------------------
-# FUNCTION 2: Calculate the BMI
+# FUNCTION 2: Unit system selection (NEW)
+# Asks user to pick Metric or Imperial
+# -------------------------------------------------------
+def get_unit_choice():
+    while True:
+        print("  Select unit system:")
+        print("  1. Metric   (kg / meters)")
+        print("  2. Imperial (lbs / inches)")
+        choice = input("  Enter 1 or 2: ").strip()
+        if choice in ['1', '2']:
+            return choice
+        print("❌ Please enter 1 or 2.\n")
+
+
+# -------------------------------------------------------
+# FUNCTION 3: Convert Imperial to Metric (NEW)
+# lbs → kg,  inches → meters
+# -------------------------------------------------------
+def convert_to_metric(weight_lbs, height_inches):
+    weight_kg = weight_lbs * 0.453592
+    height_m  = height_inches * 0.0254
+    return round(weight_kg, 2), round(height_m, 2)
+
+
+# -------------------------------------------------------
+# FUNCTION 4: Calculate the BMI
 # Formula: BMI = weight (kg) / height (m) squared
 # -------------------------------------------------------
 def calculate_bmi(weight, height):
@@ -31,7 +56,7 @@ def calculate_bmi(weight, height):
 
 
 # -------------------------------------------------------
-# FUNCTION 3: Classify BMI into health categories
+# FUNCTION 5: Classify BMI into health categories
 # Based on standard WHO BMI ranges
 # -------------------------------------------------------
 def classify_bmi(bmi):
@@ -46,7 +71,7 @@ def classify_bmi(bmi):
 
 
 # -------------------------------------------------------
-# FUNCTION 4: Display the result in a nice format
+# FUNCTION 6: Display the result in a nice format
 # -------------------------------------------------------
 def display_result(weight, height, bmi, category, advice):
     print("\n" + "=" * 45)
@@ -62,7 +87,7 @@ def display_result(weight, height, bmi, category, advice):
 
 
 # -------------------------------------------------------
-# FUNCTION 5: Show the BMI category chart
+# FUNCTION 7: Show the BMI category chart
 # -------------------------------------------------------
 def show_bmi_chart():
     print("\n  📋 BMI Categories (WHO Standard):")
@@ -88,11 +113,18 @@ def main():
         print("Enter your details below:")
         print("-" * 45)
 
-        # Step 1: Get weight from user
-        weight = get_positive_number("  Enter your weight (in kg)  : ")
+        # Step 1: Ask unit system (NEW)
+        unit = get_unit_choice()
 
-        # Step 2: Get height from user
-        height = get_positive_number("  Enter your height (in meters): ")
+        # Step 2: Get weight and height based on unit choice (NEW)
+        if unit == '1':
+            weight = get_positive_number("  Enter your weight (in kg)    : ")
+            height = get_positive_number("  Enter your height (in meters) : ")
+        else:
+            weight_lbs    = get_positive_number("  Enter your weight (in lbs)    : ")
+            height_inches = get_positive_number("  Enter your height (in inches)  : ")
+            weight, height = convert_to_metric(weight_lbs, height_inches)
+            print(f"\n  (Converted → {weight} kg, {height} m)")
 
         # Step 3: Calculate BMI
         bmi = calculate_bmi(weight, height)
