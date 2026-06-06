@@ -62,45 +62,42 @@ python bmi_calculator.py
 
 ## Program Flow
 
-```
-START
-  │
-  ▼
-Show Welcome Message + BMI Chart
-  │
-  ▼
-Select Unit System (Metric / Imperial)
-  │
-  ├── Metric   → Enter weight (kg) + height (meters)
-  │
-  └── Imperial → Enter weight (lbs) + height (inches)
-                      │
-                      ▼
-                 Convert to kg & meters
-  │
-  ▼
-Validate Input
-  ├── Invalid (letters/negative) → ❌ Ask again
-  └── Valid → Continue
-  │
-  ▼
-Calculate BMI
-  BMI = weight / (height × height)
-  │
-  ▼
-Classify BMI
-  ├── Below 18.5  → Underweight
-  ├── 18.5 – 24.9 → Normal weight
-  ├── 25.0 – 29.9 → Overweight
-  └── 30.0 above  → Obese
-  │
-  ▼
-Display Result
-  │
-  ▼
-Calculate Again?
-  ├── yes → Go back to Select Unit System
-  └── no  → END
+```mermaid
+flowchart TD
+    A([🟢 START]) --> B[Show Welcome Message\n+ BMI Chart]
+    B --> C[Select Unit System]
+
+    C --> D1[Metric\nkg / meters]
+    C --> D2[Imperial\nlbs / inches]
+
+    D2 --> E[Convert to\nkg and meters]
+    D1 --> F{Valid Input?}
+    E --> F
+
+    F -- No --> G[❌ Show Error\nAsk Again]
+    G --> F
+    F -- Yes --> H[Calculate BMI\nweight divided by height squared]
+
+    H --> I{Classify BMI}
+    I -- Below 18.5 --> J1[Underweight]
+    I -- 18.5 to 24.9 --> J2[Normal weight]
+    I -- 25.0 to 29.9 --> J3[Overweight]
+    I -- 30 and above --> J4[Obese]
+
+    J1 --> K[Display Result]
+    J2 --> K
+    J3 --> K
+    J4 --> K
+
+    K --> L{Calculate Again?}
+    L -- yes --> C
+    L -- no --> M([🔴 END])
+
+    style A fill:#2ecc71,color:#fff
+    style M fill:#e74c3c,color:#fff
+    style G fill:#e74c3c,color:#fff
+    style H fill:#3498db,color:#fff
+    style K fill:#9b59b6,color:#fff
 ```
 
 ## Concepts Used
