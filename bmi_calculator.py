@@ -1,23 +1,23 @@
 # ============================================================
 #   BMI CALCULATOR - Oasis Infobyte Python Internship
-#   Project 2: Beginner Level
-#   Author: [Your Name]
+#   Task 1: Beginner Level
+#   Author: Yuvaraj.T.K
 # ============================================================
 
 # -------------------------------------------------------
 # FUNCTION 1: Get a valid number from the user
 # This function keeps asking until the user types
-# a correct positive number (handles wrong input)
+# A correct positive number (handles wrong input)
 # -------------------------------------------------------
 def get_positive_number(prompt):
-    while True:                          # Keep looping until we get valid input
+    while True:                          
         try:
-            value = float(input(prompt)) # Try to convert input to a decimal number
-            if value <= 0:               # Number must be greater than 0
+            value = float(input(prompt)) 
+            if value <= 0:               
                 print("❌ Please enter a positive number greater than 0.\n")
             else:
-                return value             # Valid! Return the number
-        except ValueError:               # If user types letters or symbols
+                return value             
+        except ValueError:               
             print("❌ Invalid input! Please enter a number only.\n")
 
 
@@ -26,8 +26,8 @@ def get_positive_number(prompt):
 # Formula: BMI = weight (kg) / height (m) squared
 # -------------------------------------------------------
 def calculate_bmi(weight, height):
-    bmi = weight / (height ** 2)         # ** means "to the power of"
-    return round(bmi, 2)                 # Round to 2 decimal places
+    bmi = weight / (height ** 2)         
+    return round(bmi, 2)                 
 
 
 # -------------------------------------------------------
@@ -82,9 +82,8 @@ def main():
     print("    🏃 WELCOME TO BMI CALCULATOR 🏃")
     print("=" * 45)
 
-    show_bmi_chart()                          # Show the chart first
+    show_bmi_chart()                          
 
-    # Keep running until user wants to quit
     while True:
         print("Enter your details below:")
         print("-" * 45)
@@ -111,9 +110,9 @@ def main():
         if again != 'yes':
             print("\n  👋 Thank you for using BMI Calculator!")
             print("  Stay healthy! Goodbye.\n")
-            break                             # Exit the loop
+            break                             
 
-        print("\n" + "-" * 45 + "\n")         # Separator before next calculation
+        print("\n" + "-" * 45 + "\n")   
 
 
 # -------------------------------------------------------
