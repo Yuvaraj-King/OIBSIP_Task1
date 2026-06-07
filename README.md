@@ -1,11 +1,11 @@
-# 🏃 BMI Calculator - Task 1
+# 🏃 BMI Calculator
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Internship](https://img.shields.io/badge/Internship-Oasis%20Infobyte-orange)
-![Level](https://img.shields.io/badge/Level-Beginner-green)
+![Level](https://img.shields.io/badge/Level-Beginner-orange)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 A command-line BMI (Body Mass Index) Calculator built in Python. This project takes user inputs like weight and height, calculates the BMI, and classifies it into standard WHO health categories. It supports both Metric and Imperial unit systems with proper input validation and error handling.
+> Built as part of the OIBSIP Internship Program — Task 1
 
 ## Author
 **Yuvaraj.T.K** — Python Intern @ Oasis Infobyte
