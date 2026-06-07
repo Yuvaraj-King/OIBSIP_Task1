@@ -10,11 +10,6 @@ A command-line BMI (Body Mass Index) Calculator built in Python. This project ta
 ## Author
 **Yuvaraj.T.K** — Python Intern @ Oasis Infobyte
 
-## Requirements
-
-- Python 3.x or above
-- No external libraries needed — uses Python built-in functions only
-
 ## How to Run
 
 ```bash
@@ -113,5 +108,12 @@ flowchart TD
 - If/elif/else conditions
 - While loops
 - Unit conversion
+
+
+## Requirements
+
+- Python 3.x or above
+- No external libraries needed — uses Python built-in functions only
+
 
 #oasisinfobyte #oasisinfobytefamily #internship #python
