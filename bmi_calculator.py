@@ -4,61 +4,67 @@
 #   Author: Yuvaraj.T.K
 # ============================================================
 
-# -------------------------------------------------------
-# FUNCTION 1: Get a valid number from the user
-# This function keeps asking until the user types
-# A correct positive number (handles wrong input)
-# -------------------------------------------------------
-def get_positive_number(prompt):
-    while True:                          
+
+def get_weight(unit):
+    while True:
         try:
-            value = float(input(prompt)) 
-            if value <= 0:               
-                print("❌ Please enter a positive number greater than 0.\n")
+            if unit == '1':
+                weight = float(input("  Enter your weight (in kg)    : "))
+                if weight < 2 or weight > 300:
+                    print("  ❌ Please enter a realistic weight (2 kg – 300 kg).\n")
+                else:
+                    return weight
             else:
-                return value             
-        except ValueError:               
-            print("❌ Invalid input! Please enter a number only.\n")
+                weight = float(input("  Enter your weight (in lbs)   : "))
+                if weight < 5 or weight > 660:
+                    print("  ❌ Please enter a realistic weight (5 lbs – 660 lbs).\n")
+                else:
+                    return weight
+        except ValueError:
+            print("  ❌ Invalid input! Please enter a number only.\n")
 
 
-# -------------------------------------------------------
-# FUNCTION 2: Unit system selection (NEW)
-# Asks user to pick Metric or Imperial
-# -------------------------------------------------------
+def get_height(unit):
+    while True:
+        try:
+            if unit == '1':
+                height = float(input("  Enter your height (in meters) : "))
+                if height < 0.5 or height > 2.5:
+                    print("  ❌ Please enter a realistic height (0.5 m – 2.5 m).\n")
+                else:
+                    return height
+            else:
+                height = float(input("  Enter your height (in inches) : "))
+                if height < 20 or height > 100:
+                    print("  ❌ Please enter a realistic height (20 – 100 inches).\n")
+                else:
+                    return height
+        except ValueError:
+            print("  ❌ Invalid input! Please enter a number only.\n")
+
+
 def get_unit_choice():
     while True:
-        print("  Select unit system:")
+        print("\n  Select unit system:")
         print("  1. Metric   (kg / meters)")
         print("  2. Imperial (lbs / inches)")
         choice = input("  Enter 1 or 2: ").strip()
         if choice in ['1', '2']:
             return choice
-        print("❌ Please enter 1 or 2.\n")
+        print("  ❌ Please enter 1 or 2.\n")
 
 
-# -------------------------------------------------------
-# FUNCTION 3: Convert Imperial to Metric (NEW)
-# lbs → kg,  inches → meters
-# -------------------------------------------------------
 def convert_to_metric(weight_lbs, height_inches):
     weight_kg = weight_lbs * 0.453592
     height_m  = height_inches * 0.0254
     return round(weight_kg, 2), round(height_m, 2)
 
 
-# -------------------------------------------------------
-# FUNCTION 4: Calculate the BMI
-# Formula: BMI = weight (kg) / height (m) squared
-# -------------------------------------------------------
 def calculate_bmi(weight, height):
-    bmi = weight / (height ** 2)         
-    return round(bmi, 2)                 
+    bmi = weight / (height ** 2)
+    return round(bmi, 2)
 
 
-# -------------------------------------------------------
-# FUNCTION 5: Classify BMI into health categories
-# Based on standard WHO BMI ranges
-# -------------------------------------------------------
 def classify_bmi(bmi):
     if bmi < 18.5:
         return "Underweight", "⚠️  You may need to gain some weight. Consult a doctor."
@@ -70,25 +76,13 @@ def classify_bmi(bmi):
         return "Obese", "🚨  Please consult a healthcare professional for guidance."
 
 
-# -------------------------------------------------------
-# FUNCTION 6: Display the result in a nice format
-# -------------------------------------------------------
-def display_result(weight, height, bmi, category, advice):
-    print("\n" + "=" * 45)
-    print("         📊  BMI CALCULATOR RESULT")
-    print("=" * 45)
-    print(f"  Weight        : {weight} kg")
-    print(f"  Height        : {height} m")
-    print(f"  Your BMI      : {bmi}")
-    print(f"  Category      : {category}")
-    print("-" * 45)
-    print(f"  {advice}")
-    print("=" * 45)
+def ideal_weight(height_m):
+    min_w = round(18.5 * (height_m ** 2), 1)
+    max_w = round(24.9 * (height_m ** 2), 1)
+    return min_w, max_w
 
 
-# -------------------------------------------------------
-# FUNCTION 7: Show the BMI category chart
-# -------------------------------------------------------
+
 def show_bmi_chart():
     print("\n  📋 BMI Categories (WHO Standard):")
     print("  ----------------------------------")
@@ -99,57 +93,57 @@ def show_bmi_chart():
     print()
 
 
-# -------------------------------------------------------
-# MAIN PROGRAM - This is where everything runs
-# -------------------------------------------------------
-def main():
-    print("=" * 45)
-    print("    🏃 WELCOME TO BMI CALCULATOR 🏃")
-    print("=" * 45)
+def display_result(weight, height, bmi, category, advice):
+    min_w, max_w = ideal_weight(height)
 
-    show_bmi_chart()                          
+    print("\n" + "=" * 47)
+    print("         📊  BMI CALCULATOR RESULT")
+    print("=" * 47)
+    print(f"  Weight        : {weight} kg")
+    print(f"  Height        : {height} m")
+    print(f"  Your BMI      : {bmi}")
+    print(f"  Category      : {category}")
+    print("-" * 47)
+    print(f"  {advice}")
+    print("-" * 47)
+    print(f"  💡 Ideal weight : {min_w} kg  →  {max_w} kg")
+    print("=" * 47)
+
+
+def main():
+    print("=" * 47)
+    print("    🏃 WELCOME TO BMI CALCULATOR 🏃")
+    print("=" * 47)
+
+    show_bmi_chart()
 
     while True:
-        print("Enter your details below:")
-        print("-" * 45)
+        print("-" * 47)
 
-        # Step 1: Ask unit system (NEW)
         unit = get_unit_choice()
 
-        # Step 2: Get weight and height based on unit choice (NEW)
         if unit == '1':
-            weight = get_positive_number("  Enter your weight (in kg)    : ")
-            height = get_positive_number("  Enter your height (in meters) : ")
+            weight = get_weight('1')
+            height = get_height('1')
         else:
-            weight_lbs    = get_positive_number("  Enter your weight (in lbs)    : ")
-            height_inches = get_positive_number("  Enter your height (in inches)  : ")
+            weight_lbs    = get_weight('2')
+            height_inches = get_height('2')
             weight, height = convert_to_metric(weight_lbs, height_inches)
             print(f"\n  (Converted → {weight} kg, {height} m)")
 
-        # Step 3: Calculate BMI
         bmi = calculate_bmi(weight, height)
-
-        # Step 4: Classify BMI
         category, advice = classify_bmi(bmi)
-
-        # Step 5: Display result
         display_result(weight, height, bmi, category, advice)
 
-        # Step 6: Ask if user wants to calculate again
         print("\n  Do you want to calculate again?")
         again = input("  Type 'yes' to continue or 'no' to exit: ").strip().lower()
 
         if again != 'yes':
-            print("\n  👋 Thank you for using BMI Calculator!")
-            print("  Stay healthy! Goodbye.\n")
-            break                             
+            print("\n  👋 Stay healthy! Goodbye.\n")
+            break
 
-        print("\n" + "-" * 45 + "\n")   
+        print()
 
 
-# -------------------------------------------------------
-# This line runs the main() function when you execute
-# the file. It's standard Python practice.
-# -------------------------------------------------------
 if __name__ == "__main__":
     main()
